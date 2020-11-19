@@ -9,21 +9,21 @@ public class QuickSorter implements Sorter {
       int pivotValue = data[pivotPosition];
       data[pivotPosition] = data[lowerBound];
       data[lowerBound] = pivotValue;
-      int partitionIndex = lowerBound + 1;
-      for (int currentIndex = lowerBound; currentIndex < upperBound; currentIndex++) {
+      int partitionIndex = lowerBound;
+      for (int currentIndex = lowerBound + 1; currentIndex < upperBound; currentIndex++) {
         int currentValue = data[currentIndex];
-        if (currentValue < pivotValue) {
+        if (currentValue <= pivotValue) {
+          partitionIndex++;
           if (currentIndex > partitionIndex) {
             data[currentIndex] = data[partitionIndex];
             data[partitionIndex] = currentValue;
           }
-          partitionIndex++;
         }
       }
-      data[lowerBound] = data[partitionIndex - 1];
-      data[partitionIndex - 1] = pivotValue;
-      sort(data, lowerBound, partitionIndex - 1);
-      sort(data, partitionIndex, upperBound);
+      data[lowerBound] = data[partitionIndex];
+      data[partitionIndex] = pivotValue;
+      sort(data, lowerBound, partitionIndex);
+      sort(data, partitionIndex + 1, upperBound);
     }
   }
 

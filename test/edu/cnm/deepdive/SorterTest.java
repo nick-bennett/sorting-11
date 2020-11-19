@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class SorterTest {
 
+  @SuppressWarnings("unused")
   private static Stream<Arguments> sort() {
     Random rng = new Random();
     return Stream.generate(() -> singleCase(rng, 50))
@@ -31,12 +32,12 @@ class SorterTest {
   @ParameterizedTest
   @MethodSource
   void sort(int[] input, int[] expected) {
-    int[] mergeInput = Arrays.copyOf(input, input.length);
-    int[] quickInput = Arrays.copyOf(input, input.length);
-    new MergeSorter().sort(mergeInput);
-    assertArrayEquals(expected, mergeInput);
-    new QuickSorter().sort(quickInput);
-    assertArrayEquals(expected, quickInput);
+    int[] merge = Arrays.copyOf(input, input.length);
+    int[] quick = Arrays.copyOf(input, input.length);
+    new MergeSorter().sort(merge);
+    assertArrayEquals(expected, merge);
+    new QuickSorter().sort(quick);
+    assertArrayEquals(expected, quick);
   }
 
 
